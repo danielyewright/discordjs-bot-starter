@@ -16,6 +16,18 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(client, ...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(client, ...args));
+	}
+}
+
+/* Moved to individual files for event handling
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -34,5 +46,6 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+*/
 
 client.login(process.env.BOT_TOKEN);
