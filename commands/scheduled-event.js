@@ -17,13 +17,13 @@ module.exports = {
       data: {
         channel_id: null,
         privacy_level: 2,
-        entity_type: 3, // External
-        name: 'Test Event 1', // Event Name
-        scheduled_start_time: '2022-11-22T16:30:44+0000', // ISO 8601 time format
-        scheduled_end_time: '2022-11-22T17:30:44+0000', // REQUIRED | ISO 8601 timeformat
-        description: 'Lorem ipsum', // OPTIONAL
+        entity_type: 3,
+        name: 'Test Event 1',
+        scheduled_start_time: '2022-11-22T16:30:44+0000',
+        scheduled_end_time: '2022-11-22T17:30:44+0000',
+        description: 'Lorem ipsum',
         entity_metadata: { 
-          location: 'at USA' // OPTIONAL
+          location: 'at USA'
         }
       }
     }).then(() => {
