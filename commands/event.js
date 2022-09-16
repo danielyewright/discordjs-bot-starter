@@ -4,7 +4,7 @@ const logger = require('../logger');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('scheduled-event')
+    .setName('event')
     .setDescription('Create a scheduled event'),
   async execute(interaction) {
     await axios({
