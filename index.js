@@ -4,7 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 // Disable certification verification for firewalls/proxies
 // that block Discord API connections
-process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED;
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
