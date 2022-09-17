@@ -9,6 +9,7 @@ module.exports = {
 
     try {
       await command.execute(interaction);
+      console.log(`Command: ${command.data.name}`);
     }
     catch (error) {
       console.error(error);

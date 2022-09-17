@@ -23,10 +23,17 @@ module.exports = {
 			.setStyle(TextInputStyle.Paragraph);
 
     const firstActionRow = new ActionRowBuilder().addComponents(favoriteColorInput);
-    const secondActionRow = new ActionRowBuilder().addComponents(hobbiesInput);
+    // const secondActionRow = new ActionRowBuilder().addComponents(hobbiesInput);
 
-    modal.addComponents(firstActionRow, secondActionRow);
+    modal.addComponents(firstActionRow);
     await interaction.showModal(modal);
-    // await interaction.reply({ content: 'Your submission was received successfully!' });
-  },
+
+    const filter = (interaction) => interaction.customId === 'myModal';
+    interaction.awaitModalSubmit({ filter, time: 15_000 })
+      .then(interaction => {
+        console.log(`${interaction.customId} was submitted!`);
+        console.log(interaction);
+      })
+      .catch(console.error);
+  }
 };
