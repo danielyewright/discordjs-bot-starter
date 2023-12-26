@@ -1,28 +1,18 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord.js');
+import fs from 'node:fs';
+import { REST, Routes } from 'discord.js';
+const { BOT_TOKEN: token, CLIENT_ID: clientId, GUILD_ID: guildId } = process.env;
+
 
 const commands = [];
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-  const filePath = path.join(commandsPath, file);
-  const command = require(filePath);
-  commands.push(command.data.toJSON());
+  const command = await import(`./commands/${file}`);
+  commands.push(command.create());
 }
 
-const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
+const rest = new REST().setToken(token);
 
-(async () => {
-  try {
-    console.log('Started refreshing application (/) commands.');
-
-    await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands });
-
-    console.log('Successfully reloaded application (/) commands.');
-  } catch (error) {
-    console.error(error);
-  }
-})();
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+  .then(() => console.log('Successfully registered application commands.'))
+  .catch(console.error);

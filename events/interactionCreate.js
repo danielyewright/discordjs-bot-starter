@@ -1,19 +1,17 @@
-module.exports = {
-  name: 'interactionCreate',
-  async execute(client, interaction) {
-    if (!interaction.isChatInputCommand()) return;
+import { Events } from 'discord.js';
 
-    const command = client.commands.get(interaction.commandName);
+const once = false;
+const name = Events.InteractionCreate;
 
-    if (!command) return;
+async function invoke(interaction) {
+  if (!interaction.isChatInputCommand()) return;
 
-    try {
-      await command.execute(interaction);
-      console.log(`Command: ${command.data.name}`);
-    }
-    catch (error) {
-      console.error(error);
-      await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
-  },
-};
+  try {
+    (await import(`../commands/${interaction.commandName}.js`)).invoke(interaction);
+  } catch (error) {
+    console.error(`Error executing ${interaction.commandName}`);
+    console.error(error);
+  }
+}
+
+export { once, name, invoke };

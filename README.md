@@ -10,7 +10,11 @@
 
 **Reconfigure slash(/) commands**
 
-`npm run deploy-commands`
+`npm run commands`
+
+**Deletes all guild slash(/) commands**
+
+`npm run delete`
 
 **Lint all files**
 
