@@ -1,4 +1,6 @@
-# discord-bot-starter
+# discordjs-bot-starter
+
+A starter template for NodeJS (ES6) discord bots
 
 **For production use**
 
