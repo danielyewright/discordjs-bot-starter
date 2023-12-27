@@ -1,19 +1,17 @@
-module.exports = {
-	name: 'interactionCreate',
-	execute(client, interaction) {
-		// console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+import { Events } from 'discord.js';
 
-    if (!interaction.isCommand()) return;
+const once = false;
+const name = Events.InteractionCreate;
 
-    const command = client.commands.get(interaction.commandName);
+async function invoke(interaction) {
+  if (!interaction.isChatInputCommand()) return;
 
-    if (!command) return;
+  try {
+    (await import(`../commands/${interaction.commandName}.js`)).invoke(interaction);
+  } catch (error) {
+    console.error(`Error executing ${interaction.commandName}`);
+    console.error(error);
+  }
+}
 
-    try {
-      command.execute(interaction);
-    } catch (error) {
-      console.error(error);
-      interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
-	},
-};
+export { once, name, invoke };
