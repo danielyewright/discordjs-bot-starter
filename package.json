@@ -8,8 +8,8 @@
     "dev": "nodemon index.js",
     "update": "npm update",
     "upgrade": "npx npm-check-updates -u",
-    "commands": "node deploy-commands.js",
-    "delete": "node delete-commands.js",
+    "commands": "node ./utils/deploy-commands.js",
+    "delete": "node ./utils/delete-commands.js",
     "lint": "eslint . --ext .js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
