@@ -1,15 +1,15 @@
 {
-  "name": "test",
-  "version": "0.2.0",
-  "description": "",
+  "name": "discord-bot-starter",
+  "version": "0.2.1",
+  "description": "A simple, easily extendable bot for your needs",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config index.js",
-    "dev": "nodemon -r dotenv/config index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "update": "npm update",
     "upgrade": "npx npm-check-updates -u",
-    "commands": "node -r dotenv/config deploy-commands.js",
-    "delete": "node -r dotenv/config delete-commands.js",
+    "commands": "node deploy-commands.js",
+    "delete": "node delete-commands.js",
     "lint": "eslint . --ext .js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,6 @@
   "author": "Daniely Wright",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "winston": "^3.11.0"

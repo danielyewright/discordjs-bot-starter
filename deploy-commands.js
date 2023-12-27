@@ -1,8 +1,8 @@
+import {} from 'dotenv/config';
 import fs from 'node:fs';
 import { REST, Routes } from 'discord.js';
+
 const { BOT_TOKEN: token, CLIENT_ID: clientId, GUILD_ID: guildId } = process.env;
-
-
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 

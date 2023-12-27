@@ -1,7 +1,6 @@
+import {} from 'dotenv/config';
 import fs from 'node:fs';
-import { Client, Collection, GatewayIntentBits } from 'discord.js';
-
-const { BOT_TOKEN: token } = process.env;
+import { Client, GatewayIntentBits } from 'discord.js';
 
 const client = new Client({
   intents: [
@@ -27,4 +26,4 @@ for (let event of events) {
   }
 }
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
